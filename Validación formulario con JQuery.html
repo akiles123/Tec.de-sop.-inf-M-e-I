@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <title>Formulario de Registro</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <form class="row g-3 needs-validation" novalidate>
+            <div class="col-md-4 position-relative">
+                <label for="validationTooltip01" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="validationTooltip01" required>
+                <div class="valid-tooltip">
+                    ¡Se ve bien!
+                </div>
+            </div>
+            <div class="col-md-4 position-relative">
+                <label for="validationTooltip02" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="validationTooltip02" required>
+                <div class="valid-tooltip">
+                    ¡Se ve bien!
+                </div>
+            </div>
+            <div class="col-md-4 position-relative">
+                <label for="validationTooltipUsername" class="form-label">Mail</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                    <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+                    <div class="invalid-tooltip">
+                        Elije un correo electrónico válido (debe contener "@" y terminar en ".com").
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 position-relative">
+                <label for="validationTooltip03" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="validationTooltip03" required>
+                <div class="invalid-tooltip">
+                    Proporciona una ciudad válida.
+                </div>
+            </div>
+            <div class="col-md-3 position-relative">
+                <label for="validationTooltip05" class="form-label">Código postal</label>
+                <input type="text" class="form-control" id="validationTooltip05" required>
+                <div class="invalid-tooltip">
+                    Proporciona un código postal válido.
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Enviar formulario</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                // Validación de campos
+                var form = $(this);
+                var emailInput = $('#validationTooltipUsername');
+                var emailValue = emailInput.val().trim();
+
+                // Verifica el campo de correo electrónico
+                if (!isValidEmail(emailValue)) {
+                    emailInput.addClass('is-invalid');
+                    return;
+                }
+
+                form.addClass('was-validated');
+
+                // Envía el formulario si es válido
+                if (form[0].checkValidity()) {
+                    // Aquí puedes agregar código para enviar el formulario
+                }
+            });
+
+            // Función para verificar el formato del correo electrónico
+            function isValidEmail(email) {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+        });
+    </script>
+</body>
+</html>
